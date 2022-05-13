@@ -14,7 +14,7 @@ type _error struct {
 }
 
 var (
-	ErrorAuth       = &_error{Code: http.StatusUnauthorized, Message: "authentication failed", Details: nil}
+	ErrorAuth       = errors.New("authentication error")
 	ErrorValidation = &_error{Code: http.StatusUnprocessableEntity, Message: "validation failed", Details: nil}
 	ErrorNoResult   = &_error{Code: -1, Message: "no result", Details: nil}
 )

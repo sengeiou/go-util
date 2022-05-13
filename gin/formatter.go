@@ -2,6 +2,7 @@ package gin
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/golang/go-util/errors"
 	"net/http"
 )
 
@@ -13,10 +14,10 @@ func Error(c *gin.Context, err error) {
 	})
 }
 
-func ErrorAuth(c *gin.Context, err error) {
+func ErrorAuth(c *gin.Context) {
 	c.JSON(http.StatusUnauthorized, gin.H{
 		"code":    -1,
-		"message": err.Error(),
+		"message": errors.ErrorAuth.Error(),
 		"data":    nil,
 	})
 }
