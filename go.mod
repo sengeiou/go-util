@@ -1,4 +1,4 @@
-module github.com/golang/go-util
+module github.com/AndySu1021/go-util
 
 go 1.18
 

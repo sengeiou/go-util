@@ -1,8 +1,8 @@
 package gin
 
 import (
+	"github.com/AndySu1021/go-util/errors"
 	"github.com/gin-gonic/gin"
-	"github.com/golang/go-util/errors"
 	"net/http"
 )
 

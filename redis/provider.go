@@ -3,9 +3,9 @@ package redis
 import (
 	"context"
 	"fmt"
+	iface "github.com/AndySu1021/go-util/interface"
 	"github.com/cenkalti/backoff/v4"
 	"github.com/go-redis/redis/v8"
-	iface "github.com/golang/go-util/interface"
 	"github.com/rs/zerolog/log"
 	"go.uber.org/fx"
 	"time"

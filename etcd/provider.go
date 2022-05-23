@@ -2,8 +2,8 @@ package etcd
 
 import (
 	"context"
+	iface "github.com/AndySu1021/go-util/interface"
 	"github.com/cenkalti/backoff/v4"
-	iface "github.com/golang/go-util/interface"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.uber.org/fx"
 	"time"

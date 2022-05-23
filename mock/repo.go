@@ -1,7 +1,7 @@
 package mock
 
 import (
-	iface "github.com/golang/go-util/interface"
+	iface "github.com/AndySu1021/go-util/interface"
 	"github.com/golang/mock/gomock"
 	"testing"
 )

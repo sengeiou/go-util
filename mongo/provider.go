@@ -1,7 +1,7 @@
 package mongo
 
 import (
-	iface "github.com/golang/go-util/interface"
+	iface "github.com/AndySu1021/go-util/interface"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.uber.org/fx"
 )
