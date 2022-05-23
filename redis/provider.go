@@ -11,12 +11,6 @@ import (
 	"time"
 )
 
-type Params struct {
-	fx.In
-
-	Client *redis.Client
-}
-
 var Module = fx.Options(
 	fx.Provide(
 		NewRedisClient,
@@ -25,9 +19,9 @@ var Module = fx.Options(
 	),
 )
 
-func NewRedis(p Params) iface.IRedis {
+func NewRedis(client *redis.Client) iface.IRedis {
 	return &Redis{
-		client: p.Client,
+		client: client,
 	}
 }
 
