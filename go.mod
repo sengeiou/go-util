@@ -13,6 +13,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/rs/xid v1.4.0
 	github.com/rs/zerolog v1.26.1
+	go.etcd.io/etcd/client/v3 v3.5.4
 	go.mongodb.org/mongo-driver v1.8.4
 	go.uber.org/fx v1.17.1
 	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65
@@ -44,7 +45,6 @@ require (
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
 	go.etcd.io/etcd/api/v3 v3.5.4 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.4 // indirect
-	go.etcd.io/etcd/client/v3 v3.5.4 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/dig v1.14.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
