@@ -117,6 +117,7 @@ func (a GraphQLTracer) InterceptOperation(ctx context.Context, next graphql.Oper
 }
 
 func (a GraphQLTracer) InterceptResponse(ctx context.Context, next graphql.ResponseHandler) *graphql.Response {
+	response := next(ctx)
 	errList := graphql.GetErrors(ctx)
 
 	var exitStatus string
@@ -134,7 +135,7 @@ func (a GraphQLTracer) InterceptResponse(ctx context.Context, next graphql.Respo
 
 	requestCompletedCounter.Inc()
 
-	return next(ctx)
+	return response
 }
 
 func (a GraphQLTracer) InterceptField(ctx context.Context, next graphql.Resolver) (interface{}, error) {
