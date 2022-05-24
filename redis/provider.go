@@ -34,7 +34,7 @@ func NewRedisClient(cfg *Config) (*redis.Client, error) {
 	}
 
 	var client *redis.Client
-	err := backoff.Retry(func() error {
+	if err := backoff.Retry(func() error {
 		client = redis.NewClient(&redis.Options{
 			Addr:       cfg.Addresses[0],
 			Password:   cfg.Password,
@@ -48,11 +48,11 @@ func NewRedisClient(cfg *Config) (*redis.Client, error) {
 			return fmt.Errorf("ping occurs error after connecting to redis: %s", err)
 		}
 		return nil
-	}, bo)
-
-	if err != nil {
+	}, bo); err != nil {
 		return nil, err
 	}
+
+	log.Info().Msgf("ping redis success")
 
 	return client, nil
 }

@@ -71,7 +71,7 @@ func NewDatabase(cfg *Config) (db *sql.DB, err error) {
 		return nil, err
 	}
 
-	log.Info().Msgf("database ping success")
+	log.Info().Msgf("ping %s success", cfg.Type)
 
 	if cfg.MaxIdleConnections != 0 {
 		db.SetMaxIdleConns(cfg.MaxIdleConnections)
