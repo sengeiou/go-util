@@ -37,3 +37,12 @@ func SuccessWithData(c *gin.Context, data interface{}) {
 		"data":    data,
 	})
 }
+
+func SuccessWithPagination(c *gin.Context, data interface{}, pagination interface{}) {
+	c.JSON(http.StatusOK, gin.H{
+		"code":       0,
+		"message":    "Success",
+		"data":       data,
+		"pagination": pagination,
+	})
+}

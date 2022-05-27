@@ -56,11 +56,6 @@ func NewGin(lc fx.Lifecycle, cfg *Config) *gin.Engine {
 	e.Use(RateLimiterMiddleware())
 	e.Use(CORS())
 
-	// Register health check endpoint
-	e.GET("/health", func(c *gin.Context) {
-		c.Status(http.StatusOK)
-	})
-
 	pprof.Register(e)
 	return e
 }
