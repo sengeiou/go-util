@@ -14,8 +14,9 @@ type _error struct {
 
 var (
 	ErrorAuth       = &_error{Code: 0001, Message: "authentication error", Details: nil}
-	ErrorValidation = &_error{Code: 0002, Message: "validation failed", Details: nil}
-	ErrorNoResult   = &_error{Code: 0003, Message: "no result", Details: nil}
+	ErrorPerm       = &_error{Code: 0002, Message: "permission error", Details: nil}
+	ErrorValidation = &_error{Code: 0003, Message: "validation failed", Details: nil}
+	ErrorNoResult   = &_error{Code: 0004, Message: "no result", Details: nil}
 )
 
 // Wrap 用來替覆寫已定義好的 error 中的 message

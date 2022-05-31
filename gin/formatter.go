@@ -22,6 +22,14 @@ func ErrorAuth(c *gin.Context) {
 	})
 }
 
+func ErrorPerm(c *gin.Context) {
+	c.JSON(http.StatusUnauthorized, gin.H{
+		"code":    -1,
+		"message": errors.ErrorPerm.Error(),
+		"data":    nil,
+	})
+}
+
 func Success(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    0,
