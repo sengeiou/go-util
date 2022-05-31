@@ -23,7 +23,7 @@ func ErrorAuth(c *gin.Context) {
 }
 
 func ErrorPerm(c *gin.Context) {
-	c.JSON(http.StatusUnauthorized, gin.H{
+	c.JSON(http.StatusForbidden, gin.H{
 		"code":    -1,
 		"message": errors.ErrorPerm.Error(),
 		"data":    nil,
