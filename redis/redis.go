@@ -22,6 +22,9 @@ type Redis struct {
 func (c *Redis) Get(ctx context.Context, key string) (string, error) {
 	result, err := c.client.Get(ctx, key).Result()
 	if err != nil {
+		if err == redis.Nil {
+			return "", nil
+		}
 		return "", err
 	}
 	return result, nil
