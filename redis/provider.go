@@ -3,10 +3,9 @@ package redis
 import (
 	"context"
 	"fmt"
-	iface "github.com/AndySu1021/go-util/interface"
+	"github.com/AndySu1021/go-util/log"
 	"github.com/cenkalti/backoff/v4"
 	"github.com/go-redis/redis/v8"
-	"github.com/rs/zerolog/log"
 	"go.uber.org/fx"
 	"time"
 )
@@ -18,12 +17,6 @@ var Module = fx.Options(
 		NewRedisLocker,
 	),
 )
-
-func NewRedis(client *redis.Client) iface.IRedis {
-	return &Redis{
-		client: client,
-	}
-}
 
 func NewRedisClient(cfg *Config) (*redis.Client, error) {
 	bo := backoff.NewExponentialBackOff()
@@ -44,7 +37,7 @@ func NewRedisClient(cfg *Config) (*redis.Client, error) {
 		})
 		err := client.Ping(context.Background()).Err()
 		if err != nil {
-			log.Error().Msgf("ping occurs error after connecting to redis: %s", err)
+			log.Logger.Errorf("ping occurs error after connecting to redis: %s", err)
 			return fmt.Errorf("ping occurs error after connecting to redis: %s", err)
 		}
 		return nil
@@ -52,7 +45,7 @@ func NewRedisClient(cfg *Config) (*redis.Client, error) {
 		return nil, err
 	}
 
-	log.Info().Msgf("ping redis success")
+	log.Logger.Info("ping redis success")
 
 	return client, nil
 }

@@ -3,6 +3,7 @@ package gin
 import (
 	"context"
 	"errors"
+	"github.com/AndySu1021/go-util/log"
 	"go.uber.org/fx"
 	"golang.org/x/time/rate"
 	"net/http"
@@ -10,7 +11,6 @@ import (
 
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-	"github.com/rs/zerolog/log"
 )
 
 type Config struct {
@@ -33,17 +33,17 @@ func NewGin(lc fx.Lifecycle, cfg *Config) *gin.Engine {
 	}
 	lc.Append(fx.Hook{
 		OnStart: func(context.Context) error {
-			log.Info().Msgf("Starting gin server, listen on %s.", cfg.Port)
+			log.Logger.Infof("Starting gin server, listen on %s.", cfg.Port)
 			var err error
 			go func() {
 				if err = server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-					log.Error().Msgf("Fail to run gin server, err: %+v", err)
+					log.Logger.Errorf("Fail to run gin server, err: %+v", err)
 				}
 			}()
 			return nil
 		},
 		OnStop: func(context.Context) error {
-			defer log.Info().Msgf("Stopping gin HTTP server.")
+			defer log.Logger.Info("Stopping gin HTTP server.")
 			c, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 			defer cancel()
 			return server.Shutdown(c)

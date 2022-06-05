@@ -2,6 +2,7 @@ package redis
 
 import (
 	"context"
+	iface "github.com/AndySu1021/go-util/interface"
 	"github.com/go-redis/redis/v8"
 	"time"
 )
@@ -94,4 +95,10 @@ func (c *Redis) Subscribe(ctx context.Context, channel string) *redis.PubSub {
 
 func (c *Redis) GetClient() *redis.Client {
 	return c.client
+}
+
+func NewRedis(client *redis.Client) iface.IRedis {
+	return &Redis{
+		client: client,
+	}
 }

@@ -3,13 +3,13 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"github.com/AndySu1021/go-util/log"
 	"os"
 	"path"
 	"strconv"
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 type DatabaseType string
@@ -62,7 +62,7 @@ func NewDatabase(cfg *Config) (db *sql.DB, err error) {
 
 	db, err = sql.Open(cfg.Type.String(), dsn)
 	if err != nil {
-		log.Error().Msgf("fail to open connection, err: %+v", err)
+		log.Logger.Errorf("fail to open connection, err: %+v", err)
 		return nil, err
 	}
 
@@ -71,7 +71,7 @@ func NewDatabase(cfg *Config) (db *sql.DB, err error) {
 		return nil, err
 	}
 
-	log.Info().Msgf("ping %s success", cfg.Type)
+	log.Logger.Infof("ping %s success", cfg.Type)
 
 	if cfg.MaxIdleConnections != 0 {
 		db.SetMaxIdleConns(cfg.MaxIdleConnections)
